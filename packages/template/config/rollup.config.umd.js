@@ -5,28 +5,17 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import inject from '@rollup/plugin-inject';
 module.exports = {
-    input: 'src/index.umd.ts',
-    // input: 'src/precompile.ts',
-    // input: 'src/test.ts',
-    // input: 'lib/index.js',
+    input: 'src/index.ts',
     output: {
         file: 'dist/index.umd.js',
         format: 'umd',
         name: common.name,
         banner: common.banner,
-        // globals: {
-        //     fs: "fs",
-        //     os: "os",
-        //     http: "http",
-        //     https: "https",
-        //     url: "url",
-        //     path: "path"
-        // },
-        // external: ['fs', 'os', 'http', 'https', 'url', 'path']
     },
     plugins: [
-        
-        // nodePolyfills(),
+        requireResolvePolyfills(),
+        nodePolyfills(),
+        json(),
         nodeResolve(
             {   
                 extensions: ['.js', '.ts']
@@ -37,9 +26,7 @@ module.exports = {
                 extensions: ['.js', '.ts'],
             }
         ),
-        common.getCompiler({
-            module: 'es2015'
-        }),
+        common.getCompiler(),
        
         
         // getBabelOutputPlugin({
@@ -50,6 +37,17 @@ module.exports = {
         //     global: 'window'
         // })
         // babel({ babelHelpers: 'bundled' }),
-        common.getUglify()
+        // common.getUglify()
     ]
+}
+
+function requireResolvePolyfills() {
+    return {
+        renderChunk(code, chunk) {
+            var replaceCode = code.replace('require.resolve', '(function (path) {return path})')
+            return {
+                code: replaceCode
+            }
+        }
+    }
 }

@@ -6,7 +6,7 @@
   "homepage": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/china-bin/vdes-template"
+    "url": "https://github.com/vdesjs/vdes-template"
   },
   "license": "MIT",
   "main": "lib/index.js",

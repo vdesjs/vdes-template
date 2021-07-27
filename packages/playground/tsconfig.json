@@ -1,14 +1,11 @@
 {
     "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
-      "moduleResolution": "node",
-      "strict": true,
-      "jsx": "preserve",
-      "sourceMap": true,
-      "resolveJsonModule": true,
-      "esModuleInterop": true,
-      "lib": ["esnext", "dom"]
+      "target": "ES5",
+      "outDir": "./lib",
+      "module": "commonjs",
+      "declaration": true,
+      "declarationDir": "./types"
+      
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
+    "include": ["src/**/*"]
   }

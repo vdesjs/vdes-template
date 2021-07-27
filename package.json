@@ -6,9 +6,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/china-bin/vdes-template"
+    "url": "https://github.com/vdesjs/vdes-template"
   },
-  "homepage": "https://github.com/china-bin/vdes-template",
+  "homepage": "https://github.com/vdesjs/vdes-template",
   "scripts": {
     "prepare": "husky install",
     "test": "jest",

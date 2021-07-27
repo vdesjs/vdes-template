@@ -1,11 +1,13 @@
 import { compile, defaultSetting, CompilerOption, Compiler } from "@vdes-template/parser";
 
-const acorn = require("acorn");
-const estraverse = require("estraverse");
-const escodegen = require("escodegen");
-const sourceMap = require("source-map");
-const mergeSourceMap = require("merge-source-map");
-const path = require("path");
+import * as acorn from "acorn";
+import * as estraverse from "estraverse";
+
+import * as escodegen from "escodegen";
+import * as sourceMap from "source-map"
+import * as mergeSourceMap from "merge-source-map"
+import *  as path from "path"
+
 const runtimePath = require.resolve('./runtime');
 import {cloneDeep} from "lodash";
 
@@ -76,6 +78,7 @@ const getOldSourceMap = (mappings, { sourceRoot, source, file }) => {
 };
 
 
+
 export function precompile(options: PreCompileOption = {}): PreCompileRetObj {
     if (typeof options.filename !== 'string') {
         throw Error('template.precompile(): "options.filename" required');
@@ -95,14 +98,18 @@ export function precompile(options: PreCompileOption = {}): PreCompileRetObj {
             'options: { imports: require.resolve("art-template/lib/runtime") }\n'
         );
     } else {
-        console.log("imports", imports);
-        options.imports = require(imports);
+        const detectNode = typeof window === 'undefined';
+        if (detectNode) {
+            options.imports = require(imports);
+        } else {
+            options.imports = imports
+        }
+        
     }
     const isLocalModule = LOCAL_MODULE.test(imports);
     const tplImportsPath = isLocalModule
         ? imports
         : path.relative(path.dirname(options.filename), imports);
-    console.log("tplImportsPath", tplImportsPath);
     const fn = compile(options);
     code = '(' + fn.toString() + ')';
     ast = acorn.parse(code, {

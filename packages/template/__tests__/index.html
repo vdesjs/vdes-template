@@ -15,11 +15,21 @@
     <script id="vdest" type="text/html">
         hi i am {{val}}
     </script>
+
     <script>
         var html = vdesTemplate.template("vdest", {
             val: 'vdesTempate'
         })
         console.log(html)
+        console.log(vdesTemplate.precompile({
+            filename: './aa',
+            source: 'aafsdf'
+        }))
+        console.log(vdesTemplate.precompile({
+            filename: 'vdest',
+            source: `ddf {{include  './aa'}}`
+        }))
+       
     </script>
 </body>
 

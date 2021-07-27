@@ -1,13 +1,9 @@
 <template>
-    <div>
-        hello wolrd
-    </div>
+    <Header />
 
 </template>
-<script lang="ts">
+<script setup lang="ts">
 import { defineComponent } from 'vue'
+import Header from './Header.vue'
 
-export default defineComponent({
-    name: 'App'
-})
 </script>

@@ -1,14 +1,16 @@
 const common = require("./rollup.config.common")
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
+import json from '@rollup/plugin-json';
 module.exports = {
-    input: 'src/index.umd.ts',
+    input: 'src/index.ts',
     output: {
         file: 'dist/index.esm-browser.js',
         format: 'esm',
         banner: common.banner
     },
     plugins: [
+        json(),
         nodeResolve(
             {   
                 extensions: ['.js', '.ts']
