@@ -1,0 +1,3 @@
+{{include './header'}}
+hello {{val}}
+{{include './footer' }}

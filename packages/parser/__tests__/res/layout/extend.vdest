@@ -1,0 +1,1 @@
+<head>{{block 'title'}} please set this block {{/block}}</head>

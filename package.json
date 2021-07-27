@@ -1,0 +1,32 @@
+{
+  "name": "vdes-template",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/china-bin/vdes-template"
+  },
+  "homepage": "https://github.com/china-bin/vdes-template",
+  "scripts": {
+    "prepare": "husky install",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "lint": "eslint -c .eslintrc.js  packages/*/src/**/*.ts",
+    "lint:fix": "eslint -c .eslintrc.js packages/*/src/**/*.ts --fix",
+    "build": "lerna run --stream --sort build",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "conventional-changelog-cli": "^2.1.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.30.0",
+    "husky": "^7.0.1",
+    "lerna": "^4.0.0"
+  }
+}

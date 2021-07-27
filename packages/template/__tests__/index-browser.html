@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // const vdesTempate =  import("https://unpkg.com/@vue/compiler-sfc@3.2.0-beta.4/dist/compiler-sfc.esm-browser.js")
+
+        new Promise((resolve, reject) => {
+            const vdesTempate =  import("https://unpkg.com/vdes-template@1.0.0/dist/index.esm-browser.js")
+            resolve(vdesTempate)
+        }).then(vdesTempate => {
+            console.log(vdesTempate)
+            console.log(vdesTempate.render("dddde{{val}}", {val: 'i love you'}))
+            
+        })
+        
+        // new Promise(resolve => {
+        //     setTimeout(() => {
+        //         resolve('hi')
+        //     }, 1000)
+        //     resolve('no hi')
+        // }).then(res => {
+        //     console.log(res)
+        // })
+       
+        // console.log(vdesTempate)
+        // await Promise.all([
+        //     // import("../dist/index.esm-browser.js")
+           
+        // ])
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
