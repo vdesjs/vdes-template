@@ -1,6 +1,6 @@
 {
   "name": "@vdes-template/playground",
-  "version": "1.0.1",
+  "version": "1.0.2-alpha.0",
   "private": true,
   "description": "> TODO: description",
   "author": "china-bin <958615915@qq.com>",
@@ -14,12 +14,11 @@
     "dist"
   ],
   "dependencies": {
-    "vdes-template": "^1.0.1",
+    "vdes-template": "^1.0.2-alpha.0",
     "vue": "^3.0.0",
     "vue-class-component": "^8.0.0-0"
   },
   "devDependencies": {
-    
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-typescript": "~4.5.0",
