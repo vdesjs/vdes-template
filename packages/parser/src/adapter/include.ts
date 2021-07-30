@@ -7,5 +7,5 @@ export function include(filename: string, data: object, blocks: object, options:
         bail: true,
         source: null
     });
-    return compile(options)(data, blocks);
+    return compile(options).render(data, blocks);
 }

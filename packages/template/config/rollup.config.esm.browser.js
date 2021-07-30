@@ -5,8 +5,8 @@ import json from '@rollup/plugin-json';
 module.exports = {
     input: 'src/index.ts',
     output: {
-        file: 'dist/index.esm-browser.js',
-        format: 'esm',
+        file: 'dist/vdes-template.esm-browser.js',
+        format: 'es',
         banner: common.banner
     },
     plugins: [

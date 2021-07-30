@@ -19,9 +19,7 @@ module.exports = {
         //         extensions: ['.js', '.ts'],
         //     }
         // ),
-        common.getCompiler({
-            module: "ES6"
-        }),
+        common.getCompiler(),
         // common.getUglify()
     ]
 }

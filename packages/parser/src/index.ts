@@ -1,21 +1,26 @@
-import { Compiler, CompilerOption } from "./compiler";
+import { Compiler, CompilerOption, CompilerRenderFunc} from "./compiler";
 import { defaultSetting } from "./default";
 import { TemplateError } from "./error";
 import { runtime } from "./adapter/runtime";
-import {cloneDeep} from "lodash";
+import { cloneDeep } from "lodash";
 
-
-const debugRender = (error: string, options: CompilerOption) => {
+function debugRender(error: string, options: CompilerOption): CompilerRenderFunc {
     options.onerror(error, options);
-    const render = () => `{Template Error}`;
-    render.mappings = [];
-    render.sourcesContent = [];
-    return render;
-};
+    const render = (data, blocks) => `{Template Error}`;
+    // render.mappings = [];
+    // render.sourcesContent = [];
+    // return render;
+    return {
+        render,
+        mappings: [],
+        sourcesContent: [],
+        renderCode: '',
+    };
+}
 
-function compile(source: string | CompilerOption, options: CompilerOption = {}) {
 
-    if (typeof source !== 'string') {
+function compile(source: string | CompilerOption, options: CompilerOption = {}): CompilerRenderFunc {
+    if (typeof source !== "string") {
         options = source;
     } else {
         options.source = source;
@@ -54,7 +59,6 @@ function compile(source: string | CompilerOption, options: CompilerOption = {}) 
         try {
             source = options.loader(filename, options);
             options.source = source as string;
-
         } catch (error) {
             error = new TemplateError(error);
             if (options.bail) {
@@ -65,10 +69,10 @@ function compile(source: string | CompilerOption, options: CompilerOption = {}) 
         }
     }
 
-    let fn;
+    let compileFunc: CompilerRenderFunc;
     const compiler = new Compiler(options);
     try {
-        fn = compiler.build();
+        compileFunc = compiler.build();
     } catch (error) {
         error = new TemplateError(error);
         if (options.bail) {
@@ -78,15 +82,15 @@ function compile(source: string | CompilerOption, options: CompilerOption = {}) 
         }
     }
 
-    const render = (data, blocks) => {
+    function render(data?: object, blocks?: object) {
         try {
-            return fn(data, blocks);
+            return compileFunc.render(data, blocks);
         } catch (error) {
             // Runtime error to debug mode overload
             if (!options.compileDebug) {
                 options.cache = false;
                 options.compileDebug = true;
-                return compile(options)(data, blocks);
+                return compile(options).render(data, blocks);
             }
 
             error = new TemplateError(error);
@@ -94,26 +98,29 @@ function compile(source: string | CompilerOption, options: CompilerOption = {}) 
             if (options.bail) {
                 throw error;
             } else {
-                return debugRender(error, options)();
+                return debugRender(error, options).render(data, blocks);
             }
         }
-    };
+    }
 
-
-
-    render.mappings = fn.mappings;
-    render.sourcesContent = fn.sourcesContent;
-    render.renderCode = fn.renderCode;
-    render.toString = () => fn.toString();
+    // render.mappings = fn.mappings;
+    // render.sourcesContent = fn.sourcesContent;
+    // render.renderCode = fn.renderCode;
+    // render.toString = () => fn.toString();
 
     if (cache && filename) {
         caches.set(filename, render);
     }
-
-    return render;
+    return {
+        render,
+        mappings: compileFunc.mappings,
+        sourcesContent: compileFunc.sourcesContent,
+        renderCode: compileFunc.renderCode,
+        toString: () => compileFunc.toString(),
+    } as CompilerRenderFunc;
+    // return render;
 }
 
-compile.Compiler = Compiler;
+// compile.Compiler = Compiler;
 
-export {compile, CompilerOption, defaultSetting, Compiler, runtime};
-
+export { compile, CompilerOption, defaultSetting, Compiler, runtime };

@@ -9,7 +9,8 @@ import * as mergeSourceMap from "merge-source-map"
 import *  as path from "path"
 
 const runtimePath = require.resolve('./runtime');
-import {cloneDeep} from "lodash";
+// import {cloneDeep} from "lodash";
+const cloneDeep = require("lodash").cloneDeep
 
 export type PreCompileOption = CompilerOption & {
     sourceMap?: boolean,
@@ -110,8 +111,8 @@ export function precompile(options: PreCompileOption = {}): PreCompileRetObj {
     const tplImportsPath = isLocalModule
         ? imports
         : path.relative(path.dirname(options.filename), imports);
-    const fn = compile(options);
-    code = '(' + fn.toString() + ')';
+    const compileFunc = compile(options);
+    code = '(' + compileFunc.toString() + ')';
     ast = acorn.parse(code, {
         locations: options.sourceMap
     });
@@ -238,14 +239,14 @@ export function precompile(options: PreCompileOption = {}): PreCompileRetObj {
         code = gen.code;
 
         const newSourceMap = gen.map.toJSON();
-        const oldSourceMap = getOldSourceMap(fn.mappings, {
+        const oldSourceMap = getOldSourceMap(compileFunc.mappings, {
             sourceRoot,
             source,
             file
         });
         sourceMap = mergeSourceMap(oldSourceMap, newSourceMap);
         sourceMap.file = file;
-        sourceMap.sourcesContent = fn.sourcesContent;
+        sourceMap.sourcesContent = compileFunc.sourcesContent;
     } else {
         code = escodegen.generate(ast);
     }

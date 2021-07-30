@@ -1,3 +1,4 @@
+// @ts-ignore
 import {precompile, PreCompileOption, PreCompileRetObj} from "vdes-template";
 
 module.exports = function (source) {

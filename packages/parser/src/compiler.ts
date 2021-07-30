@@ -41,6 +41,14 @@ export interface CompilerOption {
 
 }
 
+export type CompilerRenderFunc = {
+    render: (data?: object, blocks?: object) => string;
+    mappings: any[];
+    sourcesContent: any[];
+    renderCode: string;
+    toString: () => string;
+};
+
 
 export class Compiler {
     // The data refrence passed to the template
@@ -142,7 +150,7 @@ export class Compiler {
 
     }
 
-    build() {
+    build(): CompilerRenderFunc {
         const options = this.options;
         const context = this.context;
         const scripts = this.scripts;
@@ -231,11 +239,18 @@ export class Compiler {
         const renderCode = stacks.join(`\n`);
 
         try {
-            const result = new Function(Compiler.IMPORTS, Compiler.OPTIONS, `return ${renderCode}`)(imports, options);
-            result.mappings = mappings;
-            result.renderCode = renderCode;
-            result.sourcesContent = [source];
-            return result;
+            const render = new Function(Compiler.IMPORTS, Compiler.OPTIONS, `return ${renderCode}`)(imports, options);
+            // result.mappings = mappings;
+            // result.renderCode = renderCode;
+            // result.sourcesContent = [source];
+            // return result;
+            return {
+                render,
+                mappings,
+                renderCode,
+                sourcesContent: [source],
+                toString: () => renderCode
+            }
         } catch (error) {
             let index = 0;
             let line = 0;

@@ -1,31 +1,59 @@
 {
   "name": "@vdes-template/playground",
   "version": "1.0.1",
+  "private": true,
   "description": "> TODO: description",
   "author": "china-bin <958615915@qq.com>",
-  "homepage": "",
-  "license": "MIT",
-  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "vdes-template": "^1.0.1",
+    "vue": "^3.0.0",
+    "vue-class-component": "^8.0.0-0"
+  },
+  "devDependencies": {
+    
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-eslint": "~4.5.0",
+    "@vue/cli-plugin-typescript": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-vue": "^7.0.0",
+    "typescript": "~4.1.5"
+  },
+  "homepage": "",
+  "license": "MIT",
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview"
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended",
+      "@vue/typescript"
+    ],
+    "parserOptions": {
+      "parser": "@typescript-eslint/parser"
+    },
+    "rules": {}
   },
-  "devDependencies": {
-    "@vitejs/plugin-vue": "^1.2.5",
-    "@vue/compiler-sfc": "^3.1.5",
-    "tslib": "^2.3.0",
-    "typescript": "^4.3.5",
-    "vite": "^2.4.3"
-  },
-  "dependencies": {
-    "vue": "^3.0.5"
-  }
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

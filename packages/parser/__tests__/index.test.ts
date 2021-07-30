@@ -6,10 +6,10 @@ const path = require('path')
 describe('compile', () => {
 
     test('output', () => {
-        expect(compile('hello {{value}}')({
+        expect(compile('hello {{value}}').render({
             value: 'world'
         })).toMatch('hello world')
-        expect(compile('hello {{值}}')({
+        expect(compile('hello {{值}}').render({
             值: 'world'
         })).toMatch('hello world')
         
@@ -22,13 +22,13 @@ describe('compile', () => {
             {{/if}}
         
         `
-        expect(compile(code)({
+        expect(compile(code).render({
             val: true
         })).toMatch('hello')
     })
     test('each', () => {
         const code = `{{each list item}}{{item}}{{/each}}`
-        expect(compile(code)({
+        expect(compile(code).render({
             list: [1, 2, 3]
         })).toMatch('123')
 
@@ -38,13 +38,13 @@ describe('compile', () => {
         // console.log(compile('hello\n{{list.ffe}}')())
 
         expect(() => {
-            compile('hello\n{{list.ffe}}')()
+            compile('hello\n{{list.ffe}}').render()
         }).toThrow()
 
         expect(() => {
             compile({
                 filename: './eewe234adsfsf.txt'
-            })()
+            }).render()
         }).toThrow()
     })
 })
@@ -56,16 +56,16 @@ describe('file', () => {
     }
     expect(myComile({
         filename: path.resolve(__dirname, "./res/file.txt")
-    })()).toMatch('hello world')
+    }).render()).toMatch('hello world')
 
     
     expect(myComile({
         filename: path.resolve(__dirname, "./res/layout/index-include")
-    })()).toMatch('i am include')
+    }).render()).toMatch('i am include')
 
     expect(myComile({
         filename: path.resolve(__dirname, "./res/layout/index-extend")
-    })()).toMatch('<head>title</head>')
+    }).render()).toMatch('<head>title</head>')
 
 
 })

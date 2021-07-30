@@ -2,9 +2,7 @@
   "name": "vdes-template",
   "private": true,
   "version": "1.0.0",
-  "workspaces": [
-    "packages/*"
-  ],
+ 
   "repository": {
     "type": "git",
     "url": "https://github.com/vdesjs/vdes-template"
@@ -28,6 +26,10 @@
     "cross-env": "^7.0.3",
     "eslint": "^7.30.0",
     "husky": "^7.0.1",
-    "lerna": "^4.0.0"
+    "lerna": "^4.0.0",
+    "jest": "^27.0.6",
+    "ts-jest": "^27.0.3",
+    "@types/jest": "^26.0.24",
+    "typescript": "^4.3.5"
   }
 }

@@ -10,7 +10,7 @@ export function template(filename: string, content: string | object) {
         return compile({
             filename,
             source: content
-        });
+        }).render;
     }
 }
 

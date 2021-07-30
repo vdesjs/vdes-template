@@ -23,6 +23,7 @@
   "peerDependencies": {
     "vdes-template": ">= 1.0.0"
   },
+  
   "devDependencies": {
     "tslib": "^2.3.0",
     "typescript": "^4.3.5",
