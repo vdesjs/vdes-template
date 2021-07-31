@@ -1,6 +1,6 @@
 {
   "name": "@vdes-template/playground",
-  "version": "1.0.2-alpha.0",
+  "version": "1.0.2",
   "private": true,
   "description": "> TODO: description",
   "author": "china-bin <958615915@qq.com>",
@@ -17,7 +17,7 @@
     "codemirror": "^5.60.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.7.0",
-    "vdes-template": "^1.0.2-alpha.0",
+    "vdes-template": "^1.0.2",
     "vue": "^3.1.5"
   },
   "devDependencies": {
