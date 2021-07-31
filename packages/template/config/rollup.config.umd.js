@@ -14,7 +14,7 @@ module.exports = {
     },
     plugins: [
         requireResolvePolyfills(),
-        nodePolyfills(),
+        nodePolyfills({exclude: 'node_modules/**/*'}),
         json(),
         nodeResolve(
             {   
@@ -26,6 +26,7 @@ module.exports = {
                 extensions: ['.js', '.ts'],
             }
         ),
+        
         common.getCompiler(),
        
         
@@ -45,6 +46,7 @@ function requireResolvePolyfills() {
     return {
         renderChunk(code, chunk) {
             var replaceCode = code.replace('require.resolve', '(function (path) {return path})')
+            replaceCode = replaceCode.replace('path__namespace', 'hello')
             return {
                 code: replaceCode
             }

@@ -12,7 +12,7 @@ module.exports = {
     },
     plugins: [
         requireResolvePolyfills(),
-        nodePolyfills(),
+        nodePolyfills({exclude: 'node_modules/**/*'}),
         json(),
         nodeResolve(
             {   

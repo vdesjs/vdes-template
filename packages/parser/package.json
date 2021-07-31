@@ -23,7 +23,8 @@
     "build:runtime": "rollup -c config/rollup.config.build.runtime.js",
     "build:cjs": "rollup -c config/rollup.config.cjs.js && npm run build:runtime",
     "build:es": "rollup -c config/rollup.config.es.js",
-    "build": "npm run clean && npm run build:cjs && npm run build:es"
+    "build": "npm run clean && npm run build:cjs && npm run build:es",
+    "vite": "vite --config config/vite.config.js build"
   },
   "dependencies": {
     "html-minifier": "^4.0.0",
@@ -31,6 +32,8 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
+    "vite": "^2.4.4",
+    
     "@rollup/plugin-commonjs": "^19.0.1",
     "@rollup/plugin-node-resolve": "^13.0.2",
     "@rollup/plugin-typescript": "^8.2.3",

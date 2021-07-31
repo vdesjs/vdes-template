@@ -9,8 +9,6 @@ import * as mergeSourceMap from "merge-source-map"
 import *  as path from "path"
 
 const runtimePath = require.resolve('./runtime');
-// import {cloneDeep} from "lodash";
-const cloneDeep = require("lodash").cloneDeep
 
 export type PreCompileOption = CompilerOption & {
     sourceMap?: boolean,
@@ -40,7 +38,7 @@ function getDefaults(options?: PreCompileOption) {
     for (const name in options) {
         setting[name] = options[name];
     }
-    return Object.assign(cloneDeep(defaultSetting), setting);
+    return Object.assign({},defaultSetting, setting);
 }
 
 // 转换外部模板文件引入语句的 filename 参数节点
