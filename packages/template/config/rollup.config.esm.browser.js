@@ -1,5 +1,6 @@
 const common = require("./rollup.config.common")
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 module.exports = {
@@ -10,6 +11,8 @@ module.exports = {
         banner: common.banner
     },
     plugins: [
+        requireResolvePolyfills(),
+        nodePolyfills(),
         json(),
         nodeResolve(
             {   
@@ -24,4 +27,15 @@ module.exports = {
         common.getCompiler(),
         // common.getUglify()
     ]
+}
+
+function requireResolvePolyfills() {
+    return {
+        renderChunk(code, chunk) {
+            var replaceCode = code.replace('require.resolve', '(function (path) {return path})')
+            return {
+                code: replaceCode
+            }
+        }
+    }
 }

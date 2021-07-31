@@ -5,7 +5,6 @@ import { ref } from 'vue'
 
 
 
-
 export const MAIN_FILE = "index.vdest";
 /**
  * The default compile we are using is built from each commit
@@ -21,10 +20,12 @@ const defaultVdesTemplateUrl = process.env.NODE_ENV != "development"
 export const vdesTemplateUrl = ref(defaultVdesTemplateUrl);
 
 export async function setVersion(version: string) {
-  const url = `https://unpkg.com/vdejs/vdes-template@${version}/dist/vdes-template.esm-browser.js`
-
+  const url = `https://unpkg.com/vdes-template@${version}/dist/vdes-template.esm-browser.js`
+  // const url = `https://unpkg.com/@vue/compiler-sfc@3.2.0-beta.7/dist/compiler-sfc.esm-browser.js`
+  
   const [vdesTemplate] = await Promise.all([
-    import( /* @vite-ignore */ url)
+    
+    import(/* @vite-ignore */ url)
   ])
   vdesCompile = vdesTemplate.compile
   vdesPreCompile = vdesTemplate.precompile
@@ -48,7 +49,7 @@ export async function compileFile({filename, templateCode, inputData, compiled}:
   }
 
   const id = await hashId(filename);
-  const {render, renderCode} = compile({
+  const {render, renderCode} = vdesCompile({
     source: templateCode,
     filename,
 
@@ -57,7 +58,7 @@ export async function compileFile({filename, templateCode, inputData, compiled}:
 
   compiled.compileRenderCode = renderCode
 
-  const preCompileCode = precompile({
+  const preCompileCode = vdesPreCompile({
     filename,
     source: templateCode
   }).code
