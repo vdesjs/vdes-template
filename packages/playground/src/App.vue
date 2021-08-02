@@ -5,6 +5,9 @@
       <template #left>
         <Editor />
       </template>
+      <template #right> 
+        <Output />
+      </template>
     </SplitPane>
   </div>
 </template>
@@ -13,6 +16,7 @@
 import Header from './component/Header.vue'
 import SplitPane from './component/SplitPane.vue'
 import Editor from './component/editor/Editor.vue'
+import Output from './component/output/Output.vue';
 
 </script>
 

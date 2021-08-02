@@ -1,11 +1,43 @@
-# `vdes-template-webpack-loader`
+# `webpack-loader-vdes-template`
 
-> TODO: description
+> TODO: Using precomilation, greatly improve the performance of templates in the browser
 
-## Usage
+## Installation
 
 ```
-const vdesTemplateWebpackLoader = require('vdes-template-webpack-loader');
+yarn add vdes-template
 
-// TODO: DEMONSTRATE API
+yarn add -D webpack-loader-vdes-template
+```
+
+## webpack rule
+```js
+moudle.exports = {
+    module: {
+        rule: [
+            {
+                test: /\.vdest$/,
+                loader: 'webpack-loader-vdes-template'
+                options: {
+                    // {PreCompileOption} from 'vdes-template'
+                }
+            }
+        ]
+    }
+}
+```
+
+## Usage
+./yourName.vdest
+```text
+Hello, I am {{name}}
+```
+
+```js
+import render from './yourName.vdest'
+
+console.log(render({
+    name: 'vdes-template'
+})) // Hello, I am vdes-template
+
 ```

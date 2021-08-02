@@ -1,4 +1,4 @@
-import {compile, defaultSetting, CompilerOption} from "@vdes-template/parser";
+import {compile, defaultSetting, CompilerOption, runtime} from "@vdes-template/parser";
 import { render } from "./render";
 
 
@@ -14,7 +14,7 @@ export function template(filename: string, content: string | object) {
     }
 }
 
-export {defaultSetting, compile, render, CompilerOption};
+export {defaultSetting, compile, render, CompilerOption, runtime};
 
 
 export { precompile, PreCompileOption, PreCompileRetObj } from "./precompile";

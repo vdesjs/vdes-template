@@ -14,7 +14,11 @@
     "registry": "https://registry.npmjs.org"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1",
-    "build": "echo \" build \""
+    "build": "vitepress build doc-en",
+    "dev": "vitepress dev doc-en",
+    "serve": "vitepress serve doc-en"
+  },
+  "devDependencies": {
+    "vitepress": "^0.15.6"
   }
 }

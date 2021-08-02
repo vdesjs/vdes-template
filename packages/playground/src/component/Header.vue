@@ -2,6 +2,7 @@
 <template>
     <nav>
         <h1>
+          <img alt="logo" class="logo" src="/logo.svg">
             <span>vdes-template playground</span>
         </h1>
         <div class="links">
@@ -121,13 +122,16 @@ async function fetchVersions(): Promise<string[]> {
     const versions = releases.map(r => {
         return /^v/.test(r.tag_name) ? r.tag_name.substr(1) : r.tag_name
     })
-    const minVersion = versions.findIndex(v => v === '1.0.0')
+    const minVersion = versions.findIndex(v => v === '1.0.3')
     return versions.slice(0, minVersion + 1)
 }
 
 </script>
 
 <style>
+.logo {
+  height: 35px;
+}
 nav {
   height: var(--nav-height);
   box-sizing: border-box;

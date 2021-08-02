@@ -8,7 +8,7 @@ I am {{name}}
 
 const welcomeInputData = `
 {
-    name: 'vdes'
+  name: 'vdes'
 }
 `.trim();
 
@@ -22,7 +22,7 @@ export class File {
         reCompileRenderCode: "",
         result: "",
     };
-    constructor(filename: string, templateCode = '', inputData = '{ }') {
+    constructor(filename: string, templateCode = 'hi', inputData = '') {
         this.filename = filename;
         this.templateCode = templateCode;
         this.inputData = inputData;
@@ -65,13 +65,15 @@ export const store: Store = reactive({
     errors: [],
 });
 
-watchEffect(() => compileFile(store.activeFile));
-
 for (const filename in store.files) {
     if (filename !== MAIN_FILE) {
         compileFile(store.files[filename]);
     }
 }
+
+watchEffect(() => compileFile(store.activeFile));
+
+
 
 watchEffect(() => {
     history.replaceState({}, "", "#" + utoa(JSON.stringify(exportFiles())));

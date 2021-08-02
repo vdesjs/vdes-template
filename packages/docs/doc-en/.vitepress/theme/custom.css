@@ -1,0 +1,16 @@
+.home-hero .image {
+    width: 200px;
+    height: 200px;
+}
+
+.nav-bar .logo {
+    height: 35px;
+    margin-right: 2px;
+}
+
+
+:root {
+  --c-brand: #646cff;
+  --c-brand-light: #747bff;
+}
+

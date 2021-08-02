@@ -1,5 +1,5 @@
 import * as path from "path"
-import { template } from "../src/index"
+import { template, runtime, compile} from "../src/index"
 
 describe('template', () => {
     test('', () => {
@@ -9,6 +9,18 @@ describe('template', () => {
                 { val: '!' }
             )
         ).toMatch('hello world!')
+    })
+
+    test('extend runtime', () => {
+        const myRuntime = runtime
+        myRuntime.$hello = () => {
+           return "hello world"
+        }
+        const text = compile({
+            source: '{{$imports.$hello()}}',
+            imports: myRuntime 
+        }).render()
+        expect(text).toMatch('hello world')
     })
 
 

@@ -3,11 +3,11 @@
   <div class="editor-container">
     <div class="inputData">
       <div class="hint">inputData</div>
-      <CodeMirror @change="onChangeInputData" :value="activeInputData" mode="javascript" />
+      <CodeMirror @change="onChangeInputData" :value="activeInputData" mode="application/ld+json" />
     </div>
     <div class="templateCode">
       <div class="hint">templateCode</div>
-      <CodeMirror @change="onChangeTemplateCode" :value="activeTemplateCode" mode="javascript" />
+      <CodeMirror @change="onChangeTemplateCode" :value="activeTemplateCode" mode="text/html" />
     </div>
 
     <Message :err="store.errors[0]" />
@@ -24,6 +24,7 @@ import { ref, watch, computed } from 'vue'
 
 const onChangeTemplateCode = debounce((code: string) => {
   store.activeFile.templateCode = code
+  console.log('templateCode', code)
 }, 250)
 const activeTemplateCode = ref(store.activeFile.templateCode)
 

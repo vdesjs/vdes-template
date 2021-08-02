@@ -1,6 +1,7 @@
 const common = require("./rollup.config.common")
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 module.exports = {
     input: 'src/index.ts',
     output: {
@@ -10,6 +11,7 @@ module.exports = {
     },
     plugins: [
         requireResolvePolyfills(),
+        nodePolyfills({exclude: 'node_modules/**/*'}),
         json(),
         commonjs(),
         common.getCompiler(),
