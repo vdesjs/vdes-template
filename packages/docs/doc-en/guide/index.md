@@ -138,7 +138,7 @@ vscode: [plugin](https://github.com/vdesjs/vdes-template/tree/master/packages/vs
 1. `target` supports iteration of array and object.
 2. $value and $index can be customized: 
      ```text
-     {{each target val key}}
+     {{each target val index}}
      ```
 ### Variable
 ```
@@ -148,7 +148,7 @@ vscode: [plugin](https://github.com/vdesjs/vdes-template/tree/master/packages/vs
 ### Template inheritance
 ```js
 {{extend './layout.vdest'}}
-{{block}} ... {{/blokc}}
+{{block}} ... {{/block}}
 
 ```
 Template inheritance allows you to build a basic templating "skeleton" that conaints common parts of your site. Example:
@@ -175,6 +175,14 @@ If render index.vdest. That will output this:
 ### Sub template
 ```
 {{include './header.vdest'}}
+```
+
+### Comments
+Support line comments and block comments
+```js
+// ...
+
+/*...*/
 ```
 
 

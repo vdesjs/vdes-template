@@ -74,6 +74,11 @@ describe('parseString', () =>{
     expect(parseString('hello')).toEqual([
         '$$out+="hello"'
     ])
+
+    //remove comment
+    expect(parseString('hello//ffffwer\n/* ewerer */')).toEqual([
+        '$$out+="hello\\n"'
+    ])
 })
 
 describe('parseExpression', () => {

@@ -9,7 +9,10 @@ export enum TplTokenType {
 export class TplToken {
     type: TplTokenType;
     value: string;
-    script: object | null;
+    script: {
+        code: string,
+        output: string
+    };
     line: number;
     start: number;
     end: number;

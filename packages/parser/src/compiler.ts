@@ -360,7 +360,7 @@ export class Compiler {
         return tplTokenizer(source, rules, context);
     }
 
-    parseExpression(tplToken) {
+    parseExpression(tplToken: TplToken) {
         const source = tplToken.value;
         const script = tplToken.script;
         const output = script.output;
@@ -385,12 +385,19 @@ export class Compiler {
         });
     }
 
-    parseString(tplToken) {
-        const source = tplToken.value;
+    parseString(tplToken: TplToken) {
+        let source = tplToken.value;
 
         if (!source) {
             return;
         }
+        
+        const commentReg = /(\/\/.*)|(\/\*(?:[^*]|\*(?!\/))*(\*\/)?)/g
+        // Remove annotation
+        source.match(commentReg)?.map( comment => {
+            source = source.replace(comment, '')
+        })
+    
 
         const code = `${Compiler.OUT}+=${this.stringify(source)}`;
         this.scripts.push({
@@ -399,7 +406,7 @@ export class Compiler {
             code
         });
     }
-    stringify(str) {
+    stringify(str: string) {
         return JSON.stringify(str);
     }
 
