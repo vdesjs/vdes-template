@@ -4,7 +4,7 @@
 	"private": true,
 	"description": "",
 	"icon": "asset/logo.png",
-	"version": "1.0.5",
+	"version": "1.0.8",
 	"publisher": "vdesjs",
 	"engines": {
 		"vscode": "^1.58.0"
