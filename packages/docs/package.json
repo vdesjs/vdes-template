@@ -1,0 +1,24 @@
+{
+  "name": "docs",
+  "version": "1.0.5",
+  "description": "> TODO: description",
+  "author": "china-bin <958615915@qq.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/docs.js",
+  "private": true,
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "vitepress build doc-en",
+    "dev": "vitepress dev doc-en",
+    "serve": "vitepress serve doc-en"
+  },
+  "devDependencies": {
+    "vitepress": "^0.15.6"
+  }
+}

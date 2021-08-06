@@ -1,0 +1,64 @@
+{
+    "if": {
+        "prefix": "if",
+        "body": [
+            "{{if ${1:expression} }}",
+            "$0",
+            "{{/if}}"
+        ],
+        "description": "if"
+    },
+    "else if": {
+        "prefix": "else if",
+        "body": [
+            "{{else if ${1:expression} }}",
+            "$0"
+        ],
+        "description": "else if"
+    },
+    "else": {
+        "prefix": "else",
+        "body": [
+            "{{else}}",
+            "$0"
+        ],
+        "description": "else"
+    },
+    "each": {
+        "prefix": "each",
+        "body": [
+            "{{each ${1:target} ${2:val} ${3:index} }}",
+            "$0",
+            "{{/each}}"
+        ],
+        "description": "else"
+    },
+    "set": {
+        "prefix": "set",
+        "body": [
+            "{{set ${1:temp} = ${2: val} }}"
+        ],
+        "description": "set"
+    },
+    "extend": {
+        "prefix": "extend",
+        "body": [
+            "{{extend '${1:./layout.vdest}' }}"
+        ],
+        "description": "extend"
+    },
+    "block": {
+        "prefix": "block",
+        "body": [
+            "{{block '${1:title}' }}",
+            "$0",
+            "{{/block}}"
+        ]
+    },
+    "include": {
+        "prefix": "include",
+        "body": [
+            "{{include '${1:./name.vdest}' }}"
+        ]
+    }
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test </title>
+    <script src="../dist/vdes-template.umd.js"></script>
+    
+</head>
+
+<body>
+    <p>test dist/index.umd.js  &#60</p>
+    <script id="vdest" type="text/html">
+        hi i am {{val}}
+    </script>
+
+    <script>
+        var html = vdesTemplate.template("vdest", {
+            val: 'vdesTempate'
+        })
+        console.log(html)
+        console.log(vdesTemplate.precompile({
+            filename: './aa',
+            source: 'aafsdf'
+        }))
+        console.log(vdesTemplate.precompile({
+            filename: 'vdest',
+            source: `ddf {{include  './aa'}}`
+        }))
+       
+    </script>
+    <script>
+
+    </script>
+</body>
+
+</html>
