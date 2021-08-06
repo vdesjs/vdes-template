@@ -8,7 +8,6 @@ module.exports = {
     output: {
         file: 'dist/runtime.js',
         format: 'umd',
-        banner: common.banner,
         name: "runtime"
     },
     plugins: [

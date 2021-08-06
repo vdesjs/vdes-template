@@ -1,5 +1,6 @@
 const path = require('path');
 
+
 module.exports = {
     entry: {
         'include': path.join(__dirname, 'include', 'index.js')
@@ -18,7 +19,7 @@ module.exports = {
                 test: /\.vdest$/,
                 use: [
                     {
-                        loader: require.resolve('../'),
+                        loader: require.resolve("../"),
                     }
                 ]
             }

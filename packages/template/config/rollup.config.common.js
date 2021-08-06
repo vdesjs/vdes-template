@@ -22,6 +22,5 @@ function getUglify() {
 }
 
 exports.name = "vdesTemplate"
-exports.banner = banner
 exports.getCompiler = getCompiler
 exports.getUglify = getUglify

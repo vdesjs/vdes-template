@@ -7,9 +7,8 @@ module.exports = {
     // input: 'src/test.ts',
     output: {
         file: 'dist/runtime.js',
-        format: 'iife',
-        banner: common.banner,
-        name: 'runtime',
+        format: 'umd',
+        name: '$imports',
     },
     plugins: [
         // nodePolyfills(),

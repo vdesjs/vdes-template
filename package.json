@@ -6,6 +6,9 @@
     "type": "git",
     "url": "https://github.com/vdesjs/vdes-template"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "homepage": "https://github.com/vdesjs/vdes-template",
   "scripts": {
     "prepare": "husky install",
@@ -14,7 +17,8 @@
     "lint": "eslint -c .eslintrc.js  packages/*/src/**/*.ts",
     "lint:fix": "eslint -c .eslintrc.js packages/*/src/**/*.ts --fix",
     "build": "lerna run --stream --sort build",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "changelog:vscode": "conventional-changelog ./packages/vscode-plugin-vdes-template --commit-path -p angular -i ./packages/vscode-plugin-vdes-template/CHANGELOG.md -s -r 0"
   },
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",

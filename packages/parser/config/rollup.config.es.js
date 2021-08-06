@@ -6,7 +6,6 @@ module.exports = {
     output: {
         file: 'dist/index.es.js',
         format: 'es',
-        banner: common.banner
     },
     plugins: [
         // nodeResolve(

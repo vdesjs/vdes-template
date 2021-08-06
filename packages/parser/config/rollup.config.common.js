@@ -20,6 +20,5 @@ function getUglify() {
     return uglify()
 }
 
-exports.banner = banner
 exports.getCompiler = getCompiler
 exports.getUglify = getUglify

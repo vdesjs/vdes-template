@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-      "target": "esnext",
+      "target": "es2015",
       "outDir": "./lib",
-      "module": "esnext",
+      "module": "commonjs",
       "declaration": true,
       "declarationDir": "./types"
       

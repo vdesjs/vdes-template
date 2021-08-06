@@ -7,7 +7,6 @@ module.exports = {
     output: {
         file: 'dist/index.esm.js',
         format: 'es',
-        banner: common.banner
     },
     plugins: [
         requireResolvePolyfills(),

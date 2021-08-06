@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-      "target": "ES5",
+      "target": "es5",
       "outDir": "./lib",
       "module": "commonjs",
       "declaration": true,
       
     },
-    "include": ["src/**/*", "example/include/test.js"]
+    "include": ["src/**/*.ts"]
   }

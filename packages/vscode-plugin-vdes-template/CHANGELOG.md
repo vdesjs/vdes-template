@@ -1,9 +1,4 @@
-# Change Log
+# [1.0.0](https://github.com/vdesjs/vdes-template/compare/v1.0.4...v1.0.0) (2021-08-04)
 
-All notable changes to the "vscode-plugin-vdes-template" extension will be documented in this file.
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
-
-- Initial release

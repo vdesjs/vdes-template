@@ -10,7 +10,6 @@ module.exports = {
         file: 'dist/vdes-template.umd.js',
         format: 'umd',
         name: common.name,
-        banner: common.banner,
     },
     plugins: [
         requireResolvePolyfills(),

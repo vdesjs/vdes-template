@@ -18,7 +18,7 @@ export const defaultSetting: CompilerOption = {
     debug: detectNode ? process.env.NODE_ENV !== 'production' : false,
     bail: true,
     cache: true,
-    minisize: true,
+    minisize: false,
     compileDebug: false,
     resolveFilename: resolveFilename,
     include: include,

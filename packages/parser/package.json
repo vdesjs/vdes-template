@@ -23,8 +23,7 @@
     "build:runtime": "rollup -c config/rollup.config.build.runtime.js",
     "build:cjs": "rollup -c config/rollup.config.cjs.js && npm run build:runtime",
     "build:es": "rollup -c config/rollup.config.es.js",
-    "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "vite": "vite --config config/vite.config.js build"
+    "build": "npm run clean && npm run build:cjs && npm run build:es"
   },
   "dependencies": {
     "html-minifier": "^4.0.0",
@@ -45,8 +44,7 @@
     "rollup-plugin-uglify": "^6.0.4",
     "ts-jest": "^27.0.3",
     "tslib": "^2.3.0",
-    "typescript": "^4.3.5",
-    "vite": "^2.4.4"
+    "typescript": "^4.3.5"
   },
   "gitHead": "792888409aada2631754c76dc2199e1769d8d14e"
 }

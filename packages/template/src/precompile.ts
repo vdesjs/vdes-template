@@ -5,7 +5,7 @@ import * as estraverse from "estraverse";
 
 import * as escodegen from "escodegen";
 import * as sourceMap from "source-map"
-import * as mergeSourceMap from "merge-source-map"
+import mergeSourceMap from "merge-source-map"
 import *  as path from "path"
 
 const runtimePath = require.resolve('./runtime');
@@ -38,11 +38,11 @@ function getDefaults(options?: PreCompileOption) {
     for (const name in options) {
         setting[name] = options[name];
     }
-    return Object.assign({},defaultSetting, setting);
+    return Object.assign({}, defaultSetting, setting);
 }
 
-// 转换外部模板文件引入语句的 filename 参数节点
-// 所有绝对路径都转换成相对路径
+// Convert the filename parameter node of the external template file import statement
+// All absolute paths are converted to relative paths
 const convertFilenameNode = (node, options: PreCompileOption) => {
     if (node.type === 'Literal') {
         const resolvePath = options.resolveFilename(node.value, options);
@@ -61,7 +61,7 @@ const convertFilenameNode = (node, options: PreCompileOption) => {
     return node;
 };
 
-// 获取原始渲染函数的 sourceMap
+// Gets the sourceMap of the original render function
 const getOldSourceMap = (mappings, { sourceRoot, source, file }) => {
     const oldSourceMap: any = new sourceMap.SourceMapGenerator({
         file,
@@ -80,7 +80,7 @@ const getOldSourceMap = (mappings, { sourceRoot, source, file }) => {
 
 export function precompile(options: PreCompileOption = {}): PreCompileRetObj {
     if (typeof options.filename !== 'string') {
-        throw Error('template.precompile(): "options.filename" required');
+        throw Error('precompile(): "options.filename" required');
     }
     options = getDefaults(options);
 
@@ -93,8 +93,8 @@ export function precompile(options: PreCompileOption = {}): PreCompileRetObj {
 
     if (typeof imports !== 'string') {
         throw Error(
-            'template.precompile(): "options.imports" is a file. Example:\n' +
-            'options: { imports: require.resolve("art-template/lib/runtime") }\n'
+            'precompile(): "options.imports" is a file. Example:\n' +
+            'options: { imports: require.resolve("vdes-template/dist/runtime") }\n'
         );
     } else {
         const detectNode = typeof window === 'undefined';

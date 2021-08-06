@@ -5,16 +5,21 @@ import { TplToken, tplTokenizer, TplTokenRule, TplTokenType } from "./tokenizer/
 export interface CompilerOption {
     // Template content. If haven't the field, the content is loaded according to the filename
     source?: string,
+    // Template filename
     filename?: string,
+    // An array of rules of template syntax
     rules?: TplTokenRule[],
     // Whether to enable automatic encoding of template output statements
     escape?: boolean,
-
+    // Whether to enable to debug mode
     debug?: boolean,
     // If ture, both the compile and runtime errors throw exceptions
     bail?: boolean,
+    
     cache?: boolean,
+    // Whether to enable minization, It will execute htmlMinifier and minimize HTML, CSS, JS. Only take effect with node enviroment
     minisize?: boolean,
+    // Whether to compile in debug mode
     compileDebug?: boolean,
     // Transition template path
     resolveFilename?: (filename: string, options: CompilerOption) => string,
@@ -32,9 +37,13 @@ export interface CompilerOption {
     onerror?: (error: any, options?: CompilerOption) => void,
     // Template file loader
     loader?: (filename: string, options?: CompilerOption) => string,
+    // Cache adapter
     caches?: Caches,
+    // Root directory of template. If filename field is not a local path, template will be found in root directory
     root?: string,
+    // Default extension. If no extensions, Extname will be automatically added
     extname?: string,
+    // An array of template variables ignored by template compiler
     ignore?: string[],
     // runtime
     imports?: Object

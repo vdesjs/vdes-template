@@ -1,0 +1,5 @@
+{{extend './aaa.vdest' }}
+
+{{block 'title' }}
+ i am hello
+{{/block}}

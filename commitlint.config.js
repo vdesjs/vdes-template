@@ -11,7 +11,7 @@ module.exports = {
         'type-case': [2, 'always', 'lower-case'],
         'type-empty': [2, 'never'],
         'scope-enum': [2, 'always', [
-            'docs', 'parser', 'plaground', 'vscode-plugin', 'webpack-loader'
+            'docs', 'parser', 'plaground', 'vscode-plugin', 'webpack-loader', 'rollup-plugin'
         ]],
         'subject-empty': [2, 'never'],
         

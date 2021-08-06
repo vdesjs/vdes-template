@@ -8,7 +8,6 @@ module.exports = {
     output: {
         file: 'dist/vdes-template.esm-browser.js',
         format: 'es',
-        banner: common.banner
     },
     plugins: [
         requireResolvePolyfills(),

@@ -1,20 +1,19 @@
 // @ts-ignore
 import {precompile, PreCompileOption, PreCompileRetObj} from "vdes-template";
 
-module.exports = function (source) {
+export default function loader(source) {
     if (this.cacheable) {
         this.cacheable();
     }
+
     const options: PreCompileOption = this.getOptions();
 
-    // console.log("source", source)
-    // console.log("resourcePath", this.resourcePath)
-    // console.log("options", options)
 
     const callback = this.callback;
 
     options.source = source;
     options.filename = this.resourcePath;
+
     options.sourceMap = this.sourceMap;
     options.sourceRoot = process.cwd();
     
@@ -39,5 +38,5 @@ module.exports = function (source) {
 	}
 
     callback(null, code, sourceMap, ast);
-    return;
+
 };

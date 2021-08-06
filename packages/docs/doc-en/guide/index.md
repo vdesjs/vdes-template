@@ -87,13 +87,7 @@ yarn add vdes-template
  <script src='https://unpkg.com/vdes-template@latest/dist/vdes-template.umd.js'> </script>
 
  ```
- #### Pre-compilation plugins
- webapck: [webpack-loader-vdes-template](https://github.com/vdesjs/vdes-template/tree/master/packages/webpack-loader-template)
 
-vite: [vite-plguin-vdes-template](https://github.com/vdesjs/vdes-template/tree/master/packages/vite-plguin-vdes-template)
-
-#### Editor plguins
-vscode: [plugin](https://github.com/vdesjs/vdes-template/tree/master/packages/vscode-plugin)
 
 
 
@@ -212,7 +206,162 @@ defaultSetting.rules[0].test = /{{([@#]?)[ \t]*(\/?)([\w\W]*?)[ \t]*}}/
 
 
  ## options
+ ### CompileOptions
+ ```javascript
+ export interface CompilerOption {
+    // Template content. If haven't the field, the content is loaded according to the filename
+    source?: string,
+    // Template filename
+    filename?: string,
+    // An array of rules of template syntax
+    rules?: TplTokenRule[],
+    // Whether to enable automatic encoding of template output statements
+    escape?: boolean,
+    // Whether to enable to debug mode
+    debug?: boolean,
+    // If ture, both the compile and runtime errors throw exceptions
+    bail?: boolean,
+    
+    cache?: boolean,
+    // Whether to enable minization, It will execute htmlMinifier and minimize HTML, CSS, JS. Only take effect with node enviroment
+    minisize?: boolean,
+    // Whether to compile in debug mode
+    compileDebug?: boolean,
+    // Transition template path
+    resolveFilename?: (filename: string, options: CompilerOption) => string,
+    // Include sub template
+    include?: (filename: string, data: object, blocks: object, options: CompilerOption) => string,
+    // Html compression, effect only nodejs
+    htmlMinifier?: (source: string, options: CompilerOption) => string,
+    htmlMinifierOptions?: {
+        collapseWhitespace?: boolean,
+        minifyCSS?: boolean,
+        minifyJS?: boolean,
+        ignoreCustomFragments?: any[]
+    },
+    // Effect only bail=false
+    onerror?: (error: any, options?: CompilerOption) => void,
+    // Template file loader
+    loader?: (filename: string, options?: CompilerOption) => string,
+    // Cache adapter
+    caches?: Caches,
+    // Root directory of template. If filename field is not a local path, template will be found in root directory
+    root?: string,
+    // Default extension. If no extensions, Extname will be automatically added
+    extname?: string,
+    // An array of template variables ignored by template compiler
+    ignore?: string[],
+    // runtime
+    imports?: Object
 
+}
+
+ ```
+
+ ### PreCompileOption
+```javascript
+export type PreCompileOption = CompilerOption & {
+    sourceMap?: boolean,
+    sourceRoot?: string
+}
+
+```
+
+### defaultSetting
+```javascript
+export const defaultSetting: CompilerOption = {
+    source: null,
+    filename: null,
+
+    rules: [new VdesTRule()],
+    escape: true,
+    debug: detectNode ? process.env.NODE_ENV !== 'production' : false,
+    bail: true,
+    cache: true,
+    minisize: false,
+    compileDebug: false,
+    resolveFilename: resolveFilename,
+    include: include,
+    htmlMinifier: htmlMinifier,
+    htmlMinifierOptions: {
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        ignoreCustomFragments: []
+    },
+    onerror: onerror,
+    loader: loader,
+    caches: new Caches(),
+    root: '/',
+    extname: '.vdest',
+    ignore: [],
+    imports: runtime
+
+};
+
+
+```
 
  ## API
 
+ ### template
+
+ #### Define:
+ * Render templates according to template name
+* Content is object,render template and renturn strinng. Content is string, compile template and return function.
+
+ ```javascript
+export function template(filename: string, content: string | object): string | Function
+```
+
+
+
+#### Usages:
+```javascript
+import {template} from 'vdes-template'
+
+// From local to load template
+const text = template('./hello.vdest', {
+     val: 'aaaaa'
+})
+
+// Compile template and cache it
+template('./hello.vdest', 'I am {{val}}')
+const text = template('./hello.vdest', {
+     val: 'aaaaaa'
+})
+```
+
+### compile
+
+#### Define
+Compile template and renturn a rendering function
+```javascript
+function compile(source: string | CompilerOption, options: CompilerOption = {}): CompilerRenderFunc
+
+```
+
+#### Usages:
+```
+import {compile} from "vdes-template"
+compile({
+     filename: './hello.vdest'
+}).render({
+     val: 'aaaa'
+})
+```
+### render
+
+#### Define:
+Compile and return rendering results
+```
+export function render(source: string | CompilerOption, data: object, options?: CompilerOption)
+```
+
+#### Usages:
+
+```
+import {render} from "vdes-template"
+render('I am {{val}}', {val: 'aaaa'})
+
+```
