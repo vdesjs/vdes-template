@@ -1,6 +1,6 @@
 module.exports = {
     title: "vdes-template",
-    base: '/en',
+    base: '/vdes-template/doc-en/',
     description: "High performance javascript template engine",
     head: [["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }]],
     themeConfig: {
@@ -14,15 +14,15 @@ module.exports = {
         nav: [
             {text: 'Guide', link: '/guide/'},
             {text: 'Plugins', link: '/plugins/'},
-            {text: 'Playground', link: '/playground/'},
+            {text: 'Playground', link: 'https://vdesjs.github.io/vdes-template/playground/'},
             {text: 'Languages', items: [
                 {
                     text: 'English',
-                    link: ''
+                    link: 'https://vdesjs.github.io/vdes-template/doc-en/'
                 },
                 {
                     text: '中文',
-                    link: ''
+                    link: 'https://vdesjs.github.io/vdes-template/doc-zh/'
                 }
             ]}
         ],
