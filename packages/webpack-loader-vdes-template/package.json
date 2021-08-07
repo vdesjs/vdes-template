@@ -1,0 +1,33 @@
+{
+  "name": "webpack-loader-vdes-template",
+  "version": "1.0.9",
+  "description": "> TODO: description",
+  "author": "china-bin <958615915@qq.com>",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vdesjs/vdes-template"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "scripts": {
+    "build": "tsc",
+    "example": "npm run build && webpack --config example/webpack.config.js"
+  },
+  "peerDependencies": {
+    "vdes-template": ">= 1.0.0"
+  },
+  "devDependencies": {
+    "tslib": "^2.3.0",
+    "typescript": "^4.3.5",
+    "webpack": "^5.45.1",
+    "webpack-cli": "^4.7.2"
+  },
+  "gitHead": "4063cc5f2eb13553acddfef4d180dd3560474f14"
+}

@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+      "target": "es2015",
+      "outDir": "./lib",
+      "module": "es6",
+      "moduleResolution": "node",
+      "declaration": true,
+      
+    },
+    "include": ["src/**/*"]
+  }
