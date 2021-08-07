@@ -1,6 +1,6 @@
 {
   "name": "vdes-template",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "> TODO: description",
   "author": "china-bin <958615915@qq.com>",
   "homepage": "",
@@ -28,7 +28,7 @@
     "build": "npm run clean && npm run build:cjs && npm run build:esm  && npm run build:umd"
   },
   "dependencies": {
-    "@vdes-template/parser": "^1.0.8",
+    "@vdes-template/parser": "^1.0.9",
     "acorn": "^5.0.3",
     "escodegen": "^1.8.1",
     "estraverse": "^4.2.0",
