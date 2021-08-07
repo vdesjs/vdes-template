@@ -18,10 +18,11 @@ module.exports = {
     ]
 }
 
+// es module spec dont't have require.resovle.
 function requireResolvePolyfills() {
     return {
         renderChunk(code, chunk) {
-            var replaceCode = code.replace('require.resolve', '(function (path) {return path})')
+            var replaceCode = code.replace(/require\.resolve/g, '(function (path) {return path})')
             return {
                 code: replaceCode
             }

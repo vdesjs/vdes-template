@@ -1,6 +1,6 @@
 <template>
   <div class="tab-buttons">
-    <button v-for="m of modes" :class="{ active: mode === m }" @click="mode = m">{{ m }}</button>
+    <button v-for="m of modes" :class="{ active: mode === m }" @click="mode = m" alt="sdfdf">{{ m }}</button>
   </div>
 
   <div class="output-container">
@@ -21,7 +21,7 @@ function displayResult(code: string) {
   return code
 }
 
-const modes = ['result', 'compileRenderCode', 'reCompileRenderCode'] as const
+const modes = ['result', 'compileRenderCode', 'reCompileRenderCode', 'reCompileRenderCodeImport'] as const
 
 type Modes = typeof modes[number]
 const mode = ref<Modes>('result');

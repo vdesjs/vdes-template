@@ -4,10 +4,6 @@ module.exports = {
         {
             file: "dist/index.cjs.js",
             format: "commonjs"
-        },
-        {
-            file: "dist/index.es.js",
-            format: "es"
         }
     ]
 }

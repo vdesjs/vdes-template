@@ -6,7 +6,6 @@
   "homepage": "https://github.com/vdesjs/vdes-template/tree/main/packages/rollup-plugin-vdes-template#readme",
   "license": "MIT",
   "main": "dist/index.cjs.js",
-  "module": "dist/index.es.js",
   "files": [
     "dist"
   ],

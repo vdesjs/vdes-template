@@ -7,7 +7,7 @@ const globalThis = typeof self !== 'undefined' ? self
 const runtime = Object.create(globalThis);
 
 
-runtime.$escape = content => textEscape(toString(content));
+runtime.$escape = content => xmlEscape(toString(content));
 
 
 runtime.$each = (data: any[] | object, callback: Function) => {
@@ -36,52 +36,51 @@ function toString(value) {
     return value;
 }
 
-// escape text
-function textEscape(content: string): string {
-    const text = '' + content;
+const ESCAPE_REG = /["&'<>]/;
+// escape HTML
+function xmlEscape(content) {
+    const html = '' + content;
+    const regexResult = ESCAPE_REG.exec(html);
+    if (!regexResult) {
+        return content;
+    }
 
-    return text;
-    // const regexResult = ESCAPE_REG.exec(html);
-    // if (!regexResult) {
-    //     return content;
-    // }
+    let result = '';
+    let i, lastIndex, char;
+    for (i = regexResult.index, lastIndex = 0; i < html.length; i++) {
+        switch (html.charCodeAt(i)) {
+            case 34:
+                char = '&#34;';
+                break;
+            case 38:
+                char = '&#38;';
+                break;
+            case 39:
+                char = '&#39;';
+                break;
+            case 60:
+                char = '&#60;';
+                break;
+            case 62:
+                char = '&#62;';
+                break;
+            default:
+                continue;
+        }
 
-    // let result = '';
-    // let i, lastIndex, char;
-    // for (i = regexResult.index, lastIndex = 0; i < html.length; i++) {
-    //     switch (html.charCodeAt(i)) {
-    //         case 34:
-    //             char = '&#34;';
-    //             break;
-    //         case 38:
-    //             char = '&#38;';
-    //             break;
-    //         case 39:
-    //             char = '&#39;';
-    //             break;
-    //         case 60:
-    //             char = '&#60;';
-    //             break;
-    //         case 62:
-    //             char = '&#62;';
-    //             break;
-    //         default:
-    //             continue;
-    //     }
+        if (lastIndex !== i) {
+            result += html.substring(lastIndex, i);
+        }
 
-    //     if (lastIndex !== i) {
-    //         result += html.substring(lastIndex, i);
-    //     }
+        lastIndex = i + 1;
+        result += char;
+    }
 
-    //     lastIndex = i + 1;
-    //     result += char;
-    // }
-
-    // if (lastIndex !== i) {
-    //     return result + html.substring(lastIndex, i);
-    // } else {
-    //     return result;
-    // }
+    if (lastIndex !== i) {
+        return result + html.substring(lastIndex, i);
+    } else {
+        return result;
+    }
 }
 
 export {runtime};

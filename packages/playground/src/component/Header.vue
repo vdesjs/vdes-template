@@ -122,7 +122,7 @@ async function fetchVersions(): Promise<string[]> {
     const versions = releases.map(r => {
         return /^v/.test(r.tag_name) ? r.tag_name.substr(1) : r.tag_name
     })
-    const minVersion = versions.findIndex(v => v === '1.0.3')
+    const minVersion = versions.findIndex(v => v === '1.0.8')
     return versions.slice(0, minVersion + 1)
 }
 

@@ -20,6 +20,7 @@ export class File {
     compiled = {
         compileRenderCode: "",
         reCompileRenderCode: "",
+        reCompileRenderCodeImport: "",
         result: "",
     };
     constructor(filename: string, templateCode = 'hi', inputData = '') {

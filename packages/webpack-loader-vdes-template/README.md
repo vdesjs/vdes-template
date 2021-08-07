@@ -14,10 +14,10 @@ yarn add -D webpack-loader-vdes-template
 ```js
 moudle.exports = {
     module: {
-        rule: [
+        rules: [
             {
                 test: /\.vdest$/,
-                loader: 'webpack-loader-vdes-template'
+                loader: 'webpack-loader-vdes-template',
                 options: {
                     // {PreCompileOption} from 'vdes-template'
                 }
