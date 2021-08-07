@@ -1,5 +1,5 @@
 import { store, File } from "./store";
-import { compile, precompile } from "vdes-template";
+import { compile, precompile, precomileImport} from "vdes-template";
 import { ref } from "vue";
 import { file } from "jszip";
 
@@ -10,6 +10,7 @@ export const MAIN_FILE = "index.vdest";
  */
 let vdesCompile = compile;
 let vdesPreCompile = precompile;
+let vdesPreCompileImport = precomileImport;
 
 const defaultVdesTemplateUrl =
     process.env.NODE_ENV != "development"
@@ -25,12 +26,14 @@ export async function setVersion(version: string) {
     const [vdesTemplate] = await Promise.all([import(/* @vite-ignore */ url)]);
     vdesCompile = vdesTemplate.compile;
     vdesPreCompile = vdesTemplate.precompile;
+    vdesPreCompileImport = vdesTemplate.precomileImport;
     console.info(`Now using vdesTemplate version: ${version}`);
 }
 
 export function resetVersion() {
     vdesCompile = compile;
     vdesPreCompile = precompile;
+    vdesPreCompileImport = precomileImport
 }
 
 export async function compileFile({ filename, templateCode, inputData, compiled }: File) {
@@ -78,6 +81,17 @@ export async function compileFile({ filename, templateCode, inputData, compiled 
             source: templateCode,
         }).code;
         compiled.reCompileRenderCode = preCompileCode;
+    } catch (error) {
+        console.log("error", error);
+        store.errors = [error];
+    }
+
+    try {
+        const preCompileCodeImport = vdesPreCompileImport({
+            filename,
+            source: templateCode,
+        }).code;
+        compiled.reCompileRenderCodeImport = preCompileCodeImport;
     } catch (error) {
         console.log("error", error);
         store.errors = [error];
